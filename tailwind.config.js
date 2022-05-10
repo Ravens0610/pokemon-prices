@@ -4,7 +4,11 @@ module.exports = {
     "./public/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'pokemon': ['Press Start 2P', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
