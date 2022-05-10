@@ -14,7 +14,7 @@ function getFetch() {
       card.showCards();
       card.hideWelcome();
       if (data.data.length > 0) {
-        card.getInfo();
+        card.cardInfo();
       } else {
         card.notAPokemon();
       }
