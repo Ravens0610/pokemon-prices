@@ -38,7 +38,7 @@ class TradingCard {
   }
 
   cardInfo() {
-      this.cards.map(card => {
+      this.cards.reverse().map(card => {
       if (card.tcgplayer && card.tcgplayer.prices) {
         let price = Object.values(card.tcgplayer.prices)[0];
         const div = document.createElement("div");
@@ -55,7 +55,7 @@ class TradingCard {
                           <h2 class="bg-blue-100 p-1.5 text-lg">High - $${price.high}</h2>
                         </li>
                         <li>
-                          <h2 class="bg-green-100 p-1.5 text-lg">Market - $${price.market}</h2>
+                          <h2 class="bg-green-100 p-1.5 text-lg">Market - $${price.market || " n/a"}</h2>
                         </li>
                         <li>
                           <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold"><a href="${card.tcgplayer.url}" target="_blank"">Check TCG player</a></h2>
