@@ -1,32 +1,34 @@
-let input = document.querySelector("input");
+document.querySelector('button').addEventListener('click', getFetch)
 
-input.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    input = document.querySelector("input").value.split(" ").join("_");
-    const url = `https://api.pokemontcg.io/v2/cards?q=name:${input}`;
-    console.log(url);
-    fetch(url)
-      .then((res) => res.json()) // parse response as JSON
-      .then((data) => {
-        console.log(data);
-        clear();
-        showCards();
-        hideWelcome();
-        if (data.data.length > 0) {
-          data.data.forEach((card) => {
-            console.log(card);
-            getImage(card);
-          });
-        } else {
-          notAPokemon()
-        }
-      })
-      .catch((err) => {
-        console.log(`error ${err}`);
-      });
-  }
-});
+function getFetch(){
+  input = document.querySelector("input").value.split(" ").join("_");
+  const url = `https://api.pokemontcg.io/v2/cards?q=name:${input}`;
+  console.log(url);
 
+  fetch(url)
+    .then((res) => res.json()) // parse response as JSON
+    .then((data) => {
+
+      console.log(data);
+      clear();
+      showCards();
+      hideWelcome();
+      
+      if (data.data.length > 0) {
+        data.data.forEach((card) => {
+          console.log(card);
+          getImage(card);
+        });
+      } else {
+        notAPokemon()
+      }
+    })
+
+    .catch((err) => {
+      console.log(`error ${err}`);
+    });
+}
+   
 function clear() {
   const cardContainer = document.querySelector(".cardContainer");
   while (cardContainer.firstChild) {
