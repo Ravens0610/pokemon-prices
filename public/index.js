@@ -1,5 +1,7 @@
+//on button press it calls function to fetch api
 document.querySelector("button").addEventListener("click", getFetch);
 
+//fetches api and calls funtions to manipulate dom
 function getFetch() {
   input = document.querySelector("input").value.split(" ").join("_");
   const url = `https://api.pokemontcg.io/v2/cards?q=name:${input}`;
@@ -10,9 +12,18 @@ function getFetch() {
     .then((data) => {
       console.log(data)
       const card = new TradingCard(data.data);
+      
+      //clears container if children are present
       card.clear();
+
+      //displays cards container
       card.showCards();
+
+      //removes the welcome message
       card.hideWelcome();
+      
+      //if user does enter a pokemon card info will be appened to the dom
+      //if user doesnt enter a pokemon input will turn red and message
       if (data.data.length > 0) {
         card.cardInfo();
       } else {
@@ -25,11 +36,14 @@ function getFetch() {
     });
 }
 
+
+//Attempt at OOP
 class TradingCard {
   constructor(cards) {
     this.cards = cards;
   }
 
+  //clear container if children present
   clear() {
     const cardContainer = document.querySelector(".cardContainer");
     while (cardContainer.firstChild) {
@@ -37,8 +51,13 @@ class TradingCard {
     }
   }
 
+
+  //loops through data and reverses it so newer cards are on top
   cardInfo() {
       this.cards.reverse().map(card => {
+
+      //some cards dont have price info so the conditional checks for that
+      //if data does have price data it will display it but not if it doesnt
       if (card.tcgplayer && card.tcgplayer.prices) {
         let price = Object.values(card.tcgplayer.prices)[0];
         const div = document.createElement("div");
@@ -64,6 +83,8 @@ class TradingCard {
         
                 </div>
                 `;
+
+         //appends card image, prices, and link to dom
         document.querySelector(".cardContainer").appendChild(div);
       } else {
         const div = document.createElement("div");
@@ -94,20 +115,25 @@ class TradingCard {
     })
   }
 
+  //shows container that cards are in
   showCards() {
     document.querySelector(".cardContainer").classList.remove("hidden");
     document.querySelector(".cardContainer").classList.add("flex");
   }
 
+  //hides welcome message
   hideWelcome() {
     document.querySelector(".welcome").classList.add("hidden");
   }
 
+  //if pokemon isnt entered turns input box red and says wrong spelling
   notAPokemon() {
     const input = document.querySelector("input");
     input.classList.add("bg-red-200");
     input.value = "";
     input.placeholder = "Wrong spelling";
+
+    //returns to normal after 3 seconds
     setTimeout(() => {
       input.classList.remove("bg-red-200");
       input.placeholder = "Enter Pokemon";
