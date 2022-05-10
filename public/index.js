@@ -8,9 +8,9 @@ function getFetch() {
   fetch(url)
     .then((res) => res.json()) // parse response as JSON
     .then((data) => {
+      console.log(data)
       const card = new TradingCard(data.data);
       card.clear();
-      card.cardInfo();
       card.showCards();
       card.hideWelcome();
       if (data.data.length > 0) {
@@ -38,21 +38,29 @@ class TradingCard {
   }
 
   cardInfo() {
-    for (const card of this.cards) {
-      if (card.tcgplayer) {
+      this.cards.map(card => {
+      if (card.tcgplayer && card.tcgplayer.prices) {
         let price = Object.values(card.tcgplayer.prices)[0];
         const div = document.createElement("div");
         div.innerHTML = `
                 <div>
                     <div class="pb-2">
-                        <a href="${card.tcgplayer.url}" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
+                        <a href="${card.tcgplayer.url}" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300 mx-auto" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
                     </div>
-                    <div class="prices">
-                        <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">Low - $${price.low}</h2>
-                        <h2 class="bg-blue-100 p-1.5 text-lg">High - $${price.high}</h2>
-                        <h2 class="bg-green-100 p-1.5 text-lg">Market - $${price.market}</h2>
-                        <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold"><a href="${card.tcgplayer.url}" target="_blank"">Check TCG player</a></h2>
-                    </div>
+                    <ul class="prices">
+                        <li>
+                          <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">Low - $${price.low}</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-blue-100 p-1.5 text-lg">High - $${price.high}</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-green-100 p-1.5 text-lg">Market - $${price.market}</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold"><a href="${card.tcgplayer.url}" target="_blank"">Check TCG player</a></h2>
+                        </li>
+                    </ul>
         
                 </div>
                 `;
@@ -62,20 +70,28 @@ class TradingCard {
         div.innerHTML = `
                 <div>
                     <div class="pb-2">
-                        <a href="#" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
+                        <a href="#" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300 mx-auto" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
                     </div>
-                    <div class="prices">
-                        <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">n/a</h2>
-                        <h2 class="bg-blue-100 p-1.5 text-lg">n/a</h2>
-                        <h2 class="bg-green-100 p-1.5 text-lg">n/a</h2>
-                        <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold">n/a</h2>
-                    </div>
+                    <ul class="prices">
+                        <li>
+                          <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">n/a</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-blue-100 p-1.5 text-lg">n/a</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-green-100 p-1.5 text-lg">n/a</h2>
+                        </li>
+                        <li>
+                          <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold">n/a</h2>
+                        </li>
+                    </ul>
         
                 </div>
                 `;
         document.querySelector(".cardContainer").appendChild(div);
       }
-    }
+    })
   }
 
   showCards() {
