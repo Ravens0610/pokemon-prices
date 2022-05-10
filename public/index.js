@@ -45,7 +45,7 @@ class TradingCard {
         div.innerHTML = `
                 <div>
                     <div class="pb-2">
-                        <a href="${card.tcgplayer.url}" target="_blank"><img src="${card.images.small}"></img></a>
+                        <a href="${card.tcgplayer.url}" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
                     </div>
                     <div class="prices">
                         <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">Low - $${price.low}</h2>
@@ -62,7 +62,7 @@ class TradingCard {
         div.innerHTML = `
                 <div>
                     <div class="pb-2">
-                        <a href="#" target="_blank"><img src="${card.images.small}" width="245" height="342"></img></a>
+                        <a href="#" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
                     </div>
                     <div class="prices">
                         <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">n/a</h2>
