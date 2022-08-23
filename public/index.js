@@ -64,7 +64,7 @@ class TradingCard {
         div.innerHTML = `
                 <div>
                     <div class="pb-2">
-                        <a href="${card.tcgplayer.url}" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300 mx-auto" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
+                        <a href="#" target="_blank"><img class="hover:scale-105 transition ease-in-out duration-300 mx-auto" src="${card.images.small}" width="240" height="330" loading="lazy"></a>
                     </div>
                     <ul class="prices">
                         <li>
