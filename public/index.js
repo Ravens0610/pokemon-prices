@@ -68,10 +68,10 @@ class TradingCard {
                     </div>
                     <ul class="prices">
                         <li>
-                          <h2 class="bg-red-100 p-1.5 text-lg rounded-t-md">Low - $${price.low}</h2>
+                          
                         </li>
                         <li>
-                          <h2 class="bg-blue-100 p-1.5 text-lg">High - $${price.high}</h2>
+                          
                         </li>
                         <li>
                           <h2 class="bg-green-100 p-1.5 text-lg">Market - $${price.market || " n/a"}</h2>
