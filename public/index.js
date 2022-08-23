@@ -71,7 +71,7 @@ class TradingCard {
                           
                         </li>
                         <li>
-                          <h2 class="bg-red-100" p-1.5 text-lg">All cards except bulk will include a $5 fee.
+                          
                         </li>
                         <li>
                           <h2 class="bg-green-100 p-1.5 text-lg">Our Price - $${price.market || " n/a"} + $5</h2>
