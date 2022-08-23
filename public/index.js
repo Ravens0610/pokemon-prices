@@ -74,7 +74,7 @@ class TradingCard {
                           
                         </li>
                         <li>
-                          <h2 class="bg-green-100 p-1.5 text-lg">Our Price - $${price.market || " n/a"} + $5</h2>
+                          <h2 class="bg-green-100 p-1.5 text-lg">Our Price - $${price.market || " n/a"}</h2>
                         </li>
                         <li>
                           <h2 class="bg-gray-200 p-1.5 text-lg rounded-b-md font-bold"><a href="https://discord.gg/6SRB85bUf7" target="_blank"">Purchase</a></h2>
